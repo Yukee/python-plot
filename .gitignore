@@ -5,12 +5,6 @@ output/
 
 # Temporary file directory
 tmp/
-# Simulations results directory
-Results/
-# Simulations tests directory
-Test/
-# Matlab plot directory
-Matlab/
 # Binary and object files directories
 bin/
 obj/
