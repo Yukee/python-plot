@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """
+decription: load images from text, interpolate them and print the result in png files, build video from images using avconv
 usage: python ploy.py begin_index end_index skip dt
 """
 from os import system
