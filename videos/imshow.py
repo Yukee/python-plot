@@ -17,12 +17,14 @@ end=int(argv[2])
 skip=int(argv[3])
 dt=float(argv[4])
 
-filename = 'longrun_20fps_'
+filename = 'flume_'
 loadpath = 'files/' + filename
 savepath = 'results/contour_' + filename
 
-llc = np.array([-1.5,0])
-xi = np.array([3,1])
+llc = np.array([-6,0])
+xi = np.array([6,0.25])
+nx = 300
+ny = 50
 
 # domain
 extent = np.transpose(np.array([llc, llc + xi]))
@@ -38,9 +40,9 @@ while (a + skip*(counter - 1)) < end:
     x, y, z = np.genfromtxt(loadpath + b1 + ".tsv", unpack = True, dtype = 'f8')
     print('loaded file number ' + b1)
 
-    zi = z.reshape(201,301)
-    xi = np.linspace(llc[0],llc[0]+xi[0],301)
-    yi = np.linspace(llc[1],llc[1]+xi[1],201)    
+    zi = z.reshape(ny, nx)
+    xi = np.linspace(llc[0],llc[0]+xi[0],nx)
+    yi = np.linspace(llc[1],llc[1]+xi[1],ny)    
 
     levels = np.linspace(0, 1, 100)
 
@@ -51,8 +53,8 @@ while (a + skip*(counter - 1)) < end:
     #plt.ylabel('z')
     #plt.title('Concentration of small particles in the centre plane')
 
-    # use interpolation='nearest' to plot the actual pixels
-    im = plt.imshow(zi, origin='lower', interpolation='nearest', extent=extent, cmap = cm.gist_heat, norm=norm)
+    # use interpolation='nearest' to plot the actual pixels. The scalar aspect is height/width
+    im = plt.imshow(zi, origin='lower', interpolation='nearest', extent=extent, cmap = cm.gist_heat, norm=norm, aspect=4)
 
     fig.colorbar(im, orientation='horizontal')
 
