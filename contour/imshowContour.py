@@ -4,16 +4,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import cm
 
-file = "flume_80.tsv"
+file = "phiinit.tsv"
 
 fig = plt.figure()
 
 x, y, z = np.genfromtxt(file, unpack = True, dtype = 'f8')
 
-llc = np.array([-6,0])
-xi = np.array([6,0.25])
-nx = 300
-ny = 50
+llc = np.array([-4.5,0])
+xi = np.array([4.5,0.25])
+nx = 4500
+ny = 250
 
 # domain
 extent = np.transpose(np.array([llc, llc + xi]))
