@@ -61,4 +61,6 @@ while (a + skip*(counter - 1)) < end:
     counter += 1
 
 print 'Done plotting, generating video'
-system('avconv -qscale 5 -r 10 -b 32k -i ' + savepath + '%05d.png ' + savepath + '.avi')
+
+# r : number of fps (default is 25), qscale : quality (1 = best, 31 = worst)
+system('avconv -r 25 -i ' + savepath + '%05d.png ' + 'qscale 3 ' + savepath + '.avi')

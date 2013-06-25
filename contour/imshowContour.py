@@ -4,16 +4,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import cm
 
-file = "longrun_20fps_0.tsv"
+file = "flume_80.tsv"
 
 fig = plt.figure()
 
 x, y, z = np.genfromtxt(file, unpack = True, dtype = 'f8')
 
-llc = np.array([-1.5,0])
-xi = np.array([3.006,1.01])
-nx = 301
-ny = 201
+llc = np.array([-6,0])
+xi = np.array([6,0.25])
+nx = 300
+ny = 50
 
 # domain
 extent = np.transpose(np.array([llc, llc + xi]))
@@ -29,7 +29,7 @@ levels = np.linspace(0.1, 1, 100)
 norm = cm.colors.Normalize(vmax=zi.max(), vmin=zi.min())
 
 # use interpolation='nearest' to plot the actual pixels
-im = plt.imshow(zi, origin='lower', interpolation='nearest', extent=extent, cmap = cm.copper, norm=norm)
+im = plt.imshow(zi, origin='lower', interpolation='nearest', extent=extent, cmap = cm.gist_ncar, norm=norm, aspect=4)
 
 fig.colorbar(im, orientation='horizontal')
 
