@@ -17,14 +17,14 @@ end=int(argv[2])
 skip=int(argv[3])
 dt=float(argv[4])
 
-filename = 'longrun_25fps_'
+filename = 'flume_high_res_'
 loadpath = 'files/' + filename
 savepath = 'results/contour_' + filename
 
-llc = np.array([-1.5,0])
-xi = np.array([3.01,1.006])
-nx = 301
-ny = 201
+llc = np.array([-6,0])
+xi = np.array([6,0.25])
+nx = 300
+ny = 125
 
 # domain
 extent = np.transpose(np.array([llc, llc + xi]))
@@ -54,7 +54,7 @@ while (a + skip*(counter - 1)) < end:
     #plt.title('Concentration of small particles in the centre plane')
 
     # use interpolation='nearest' to plot the actual pixels. The scalar aspect is height/width
-    im = plt.imshow(zi, origin='lower', interpolation='nearest', extent=extent, cmap = cm.gist_heat, norm=norm, aspect=1)
+    im = plt.imshow(zi, origin='lower', interpolation='nearest', extent=extent, cmap = cm.gist_heat, norm=norm, aspect=4)
 
     fig.colorbar(im, orientation='horizontal')
 
@@ -66,4 +66,4 @@ while (a + skip*(counter - 1)) < end:
 print 'Done plotting, generating video'
 
 # r : number of fps (default is 25), qscale : quality (1 = best, 31 = worst)
-system('avconv -r 25 -i ' + savepath + '%05d.png ' + 'qscale 3 ' + savepath + '.avi')
+system('avconv -i ' + savepath + '%05d.png ' + '-qscale 3 -r 5 ' + savepath + '.avi')
