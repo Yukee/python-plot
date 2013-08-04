@@ -17,7 +17,7 @@ end=int(argv[2])
 skip=int(argv[3])
 dt=float(argv[4])
 
-filename = 'flume_high_res_'
+filename = 'longrun_highres_'
 loadpath = 'files/' + filename
 savepath = 'results/contour_' + filename
 
